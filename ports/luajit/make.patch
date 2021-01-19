@@ -1,0 +1,33 @@
+diff --git a/src/Makefile b/src/Makefile
+index 2e1a2888..67620424 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -24,7 +24,7 @@ NODOTABIVER= 51
+ # removing the '#' in front of them. Make sure you force a full recompile
+ # with "make clean", followed by "make" if you change any options.
+ #
+-DEFAULT_CC = gcc
++DEFAULT_CC = clang
+ #
+ # LuaJIT builds as a native 32 or 64 bit binary by default.
+ CC= $(DEFAULT_CC)
+@@ -205,14 +205,14 @@ HOST_ACFLAGS= $(CCOPTIONS) $(HOST_XCFLAGS) $(TARGET_ARCH) $(HOST_CFLAGS)
+ HOST_ALDFLAGS= $(LDOPTIONS) $(HOST_XLDFLAGS) $(HOST_LDFLAGS)
+ HOST_ALIBS= $(HOST_XLIBS) $(LIBS) $(HOST_LIBS)
+ 
+-STATIC_CC = $(CROSS)$(CC)
+-DYNAMIC_CC = $(CROSS)$(CC) -fPIC
++STATIC_CC = $(CROSS)xcrun --sdk macosx11.1 $(CC) -arch arm64
++DYNAMIC_CC = $(CROSS)xcrun --sdk macosx11.1 $(CC) -fPIC -arch arm64
+ TARGET_CC= $(STATIC_CC)
+ TARGET_STCC= $(STATIC_CC)
+ TARGET_DYNCC= $(DYNAMIC_CC)
+-TARGET_LD= $(CROSS)$(CC)
+-TARGET_AR= $(CROSS)ar rcus 2>/dev/null
+-TARGET_STRIP= $(CROSS)strip
++TARGET_LD= $(CROSS)xcrun --sdk macosx11.1 $(CC) -arch arm64
++TARGET_AR= $(CROSS)xcrun --sdk macosx11.1 ar rcus 2>/dev/null
++TARGET_STRIP= $(CROSS)xcrun --sdk macosx11.1 strip
+ 
+ TARGET_LIBPATH= $(or $(PREFIX),/usr/local)/$(or $(MULTILIB),lib)
+ TARGET_SONAME= libluajit-$(ABIVER).so.$(MAJVER)
