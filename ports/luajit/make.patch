@@ -11,6 +11,15 @@ index 2e1a2888..67620424 100644
  #
  # LuaJIT builds as a native 32 or 64 bit binary by default.
  CC= $(DEFAULT_CC)
+@@ -71,7 +71,7 @@ CCWARN= -Wall
+ # as dynamic mode.
+ #
+ # Mixed mode creates a static + dynamic library and a statically linked luajit.
+-BUILDMODE= mixed
++BUILDMODE= static
+ #
+ # Static mode creates a static library and a statically linked luajit.
+ #BUILDMODE= static
 @@ -205,14 +205,14 @@ HOST_ACFLAGS= $(CCOPTIONS) $(HOST_XCFLAGS) $(TARGET_ARCH) $(HOST_CFLAGS)
  HOST_ALDFLAGS= $(LDOPTIONS) $(HOST_XLDFLAGS) $(HOST_LDFLAGS)
  HOST_ALIBS= $(HOST_XLIBS) $(LIBS) $(HOST_LIBS)
